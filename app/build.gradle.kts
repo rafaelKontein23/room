@@ -46,7 +46,9 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
+    implementation(libs.workmanager)
     kapt(libs.room.compiler)
+
     implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

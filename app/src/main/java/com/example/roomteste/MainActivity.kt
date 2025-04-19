@@ -11,6 +11,11 @@ import com.example.roomteste.config.AppDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.WorkRequest
+import com.example.roomteste.worrkManeger.MeuWorker
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         btninserir = findViewById(R.id.btninserir)
 
+        agendarTrabalho()
         btninserir.setOnClickListener {
             val usaurio = Usuario(nome = "Fael", idade = 20)
 
@@ -49,5 +55,14 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+
+    // aqui é do work manager ondee eu vou agendar a tarefa
+    private fun agendarTrabalho() {
+        val workRequest = OneTimeWorkRequestBuilder<MeuWorker>()
+            .build()
+
+        WorkManager.getInstance(this).enqueue(workRequest)
     }
 }
